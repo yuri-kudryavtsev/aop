@@ -1,0 +1,8 @@
+<aspectj>
+    <aspects>
+        <aspect name="org.example.aop.aspects.AspectsOrder"/>
+        <aspect name="org.example.aop.aspects.AllureLogAspect"/>
+        <aspect name="org.example.aop.aspects.MatcherAssertAspect"/>
+        <aspect name="org.example.aop.aspects.WithRetriesAspect"/>
+    </aspects>
+</aspectj>

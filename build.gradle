@@ -1,0 +1,66 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'io.qameta.allure:allure-gradle:2.8.1'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.8.1'
+    id 'org.openapi.generator' version '4.3.1'
+}
+
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    allureJavaVersion = '2.13.7'
+    aspectjVersion = '1.9.2'
+    configuration = 'compile'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.testng/testng
+    compile group: 'org.testng', name: 'testng', version: '7.1.0'
+    // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
+    compile group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
+    // https://mvnrepository.com/artifact/com.codeborne/selenide
+    compile group: 'com.codeborne', name: 'selenide', version: '5.15.1'
+    compile 'org.aspectj:aspectjrt:1.9.2'
+    // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+    // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.26'
+    // https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j
+    compile group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.26'
+}
+
+test {
+    useTestNG()
+    ignoreFailures = true
+    jvmArgs('--add-opens', 'java.base/java.lang=ALL-UNNAMED')
+    jvmArgs('--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED')
+    jvmArgs('--add-opens', 'java.base/java.nio=ALL-UNNAMED')
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+}
+
+gradle.startParameter.continueOnFailure = true
